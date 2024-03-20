@@ -5,3 +5,6 @@ from src.domino import Domino
 class Move:
     domino: Domino
     side: str
+
+    def __str__(self) -> str:
+        return f"Add {self.domino} to {self.side} side."

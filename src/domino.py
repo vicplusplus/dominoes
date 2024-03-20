@@ -9,3 +9,6 @@ class Domino:
 
     def value(self) -> int:
         return self.left + self.right
+    
+    def __str__(self) -> str:
+        return f"[{self.left}|{self.right}]"
