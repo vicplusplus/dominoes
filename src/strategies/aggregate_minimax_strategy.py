@@ -53,27 +53,22 @@ def minimax(hand, current_board, depth, isMaximizingPlayer):
     else: # Minimizing player
         minScore = +inf
         for current_board in list_possible_opponent_boards(hand, current_board, len(current_board.players) - 1):
-            score = minimax(hand, depth - 1, True)
+            score = minimax(hand, current_board, depth - 1, True)
             minScore = min(minScore, score)
         return minScore
 
 def opponents_hand(player_hand: List[Domino], board: Board) -> List[Domino]:
-    # Assume all other players combined have every piece that is not in the player's hand or on the board
-    all_dominoes = Domino.generate_all(board.max_value)
+    # Generate all possible dominoes up to board's max value
+    all_dominoes = set(Domino.generate_all(board.max_value))
     
-    # remove any dominoes that are in the player's hand,
-    # as well as any dominoes that are either on the board or their flipped version is on the board
-    for domino in all_dominoes:
-        if domino in player_hand:
-            all_dominoes.remove(domino)
-        elif domino.flipped() in player_hand: # This shouldn't happen, but just in case
-            all_dominoes.remove(domino)
-        elif domino in board.dominoes:
-            all_dominoes.remove(domino)
-        elif domino.flipped() in board.dominoes:
-            all_dominoes.remove(domino)
+    # Convert player's hand and board dominoes to sets for efficient lookup
+    player_hand_set = {domino for domino in player_hand} | {domino.flipped() for domino in player_hand}
+    board_dominoes_set = {domino for domino in board.dominoes} | {domino.flipped() for domino in board.dominoes}
     
-    return all_dominoes
+    # Use set difference to find dominoes not in player's hand or on the board
+    remaining_dominoes = all_dominoes - player_hand_set - board_dominoes_set
+    
+    return list(remaining_dominoes)
 
 def list_possible_opponent_boards(hand, board, depth) -> List[Board]:
     # All other players are treated as a single opponent that can make K-1 moves where K
@@ -98,6 +93,8 @@ def heuristic_value(hand, board):
     # 2. the sum of the values of the dominoes in the hand
     # A player with a large hand and few possible moves is at a disadvantage
     # A player with a small hand and many possible moves is at an advantage
+    if not hand:
+        return inf
     return len(board.possible_moves(hand)) / len(hand) + sum(domino.value() for domino in hand)
 
 def is_terminal(hand, board):
