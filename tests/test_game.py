@@ -3,7 +3,6 @@ from src.game import Game
 from src.player import Player
 from src.domino import Domino
 from src.strategies.random_strategy import RandomStrategy
-from src.board import Board
 
 class TestGame(unittest.TestCase):
     def setUp(self):
