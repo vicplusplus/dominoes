@@ -2,10 +2,11 @@ from src.domino import Domino
 from typing import List
 from src.move import Move
 class Board:
-    def __init__(self, max_value: int, num_players: int) -> None:
+    def __init__(self, max_value: int, num_players: int, pieces_per_hand: int) -> None:
         self.dominoes: list = []
         self.max_value = max_value
         self.num_players = num_players
+        self.pieces_per_hand = pieces_per_hand
 
     def add(self, domino: Domino, side: str) -> None:
         if not self.can_add(domino, side):
