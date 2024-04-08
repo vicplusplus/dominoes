@@ -14,6 +14,10 @@ class Domino:
     def __str__(self) -> str:
         return f"[{self.left}|{self.right}]"
     
+    # hash function for the Domino class
+    def __hash__(self) -> int:
+        return hash((self.left, self.right))
+    
     @staticmethod
     def generate_all(max_value: int) -> List["Domino"]:
         dominoes = []

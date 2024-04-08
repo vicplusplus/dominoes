@@ -52,7 +52,7 @@ def minimax(hand, current_board, depth, isMaximizingPlayer):
         return maxScore
     else: # Minimizing player
         minScore = +inf
-        for current_board in list_possible_opponent_boards(hand, current_board, len(current_board.players) - 1):
+        for current_board in list_possible_opponent_boards(hand, current_board, current_board.num_players - 1):
             score = minimax(hand, current_board, depth - 1, True)
             minScore = min(minScore, score)
         return minScore
@@ -109,8 +109,5 @@ def board_after_move(board, move):
 
 def hand_after_move(hand, move):
     new_hand = hand.copy()
-    if move.domino in new_hand:
-        new_hand.remove(move.domino)
-    else:
-        new_hand.remove(move.domino.flipped())
+    Move.remove_from_hand(move, new_hand)
     return new_hand

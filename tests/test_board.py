@@ -5,7 +5,7 @@ from src.move import Move
 
 class TestBoard(unittest.TestCase):
     def setUp(self):
-        self.board = Board()
+        self.board = Board(6, 4, 7)
 
     def test_add_to_empty_board(self):
         domino = Domino(1, 2)

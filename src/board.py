@@ -38,3 +38,8 @@ class Board:
                 if self.can_add(domino.flipped(), side):
                     moves.append(Move(domino.flipped(), side))
         return moves
+    
+    def copy(self):
+        new_board = Board(self.max_value, self.num_players, self.pieces_per_hand)
+        new_board.dominoes = self.dominoes.copy()
+        return new_board

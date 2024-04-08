@@ -14,12 +14,12 @@ class Player:
     def play(self, board: Board) -> Optional[Move]:
         selected = self.strategy.select_move(self.hand, board)
         if selected:
-            if selected.domino in self.hand:
-                self.hand.remove(selected.domino)
-            else:
-                self.hand.remove(selected.domino.flipped())
+            Move.remove_from_hand(selected, self.hand)
             return selected
         return None
 
     def score(self) -> int:
         return sum(domino.value() for domino in self.hand)
+    
+    def min_domino(self) -> Domino:
+        return min(self.hand, key=lambda domino: domino.value())

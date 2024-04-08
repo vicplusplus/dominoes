@@ -7,20 +7,18 @@ from src.strategies.random_strategy import RandomStrategy
 class TestGame(unittest.TestCase):
     def setUp(self):
         self.players = [Player('Player 1', RandomStrategy()), Player('Player 2', RandomStrategy())]
-        self.game = Game(self.players)
+        self.game = Game(self.players, 9, 7)
 
     def test_distribute_pieces(self):
-        self.game.distribute_pieces(6, 7)
+        self.game.distribute_pieces()
         for player in self.players:
             self.assertEqual(len(player.hand), 7)
 
     def test_play(self):
-        self.game.distribute_pieces(6, 7)
         winner = self.game.play()
         self.assertIn(winner, self.players)
 
     def test_score(self):
-        self.game.distribute_pieces(6, 7)
         self.game.play()
         for player in self.players:
             self.assertGreaterEqual(player.score(), 0)

@@ -12,14 +12,14 @@ class TestPlayer(unittest.TestCase):
 
     def test_valid_move(self):
         self.player.hand = [Domino(1, 2), Domino(3, 4)]
-        board = Board()
+        board = Board(6, 4, 7)
         board.add(Domino(1, 5), "right")
         move = self.player.play(board)
         self.assertEqual(move, Move(Domino(2, 1), "left"))
     
     def test_invalid_move(self):
         self.player.hand = [Domino(1, 2), Domino(3, 4)]
-        board = Board()
+        board = Board(6, 4, 7)
         board.add(Domino(5, 6), "left")
         move = self.player.play(board)
         self.assertIsNone(move)
