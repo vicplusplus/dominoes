@@ -7,19 +7,19 @@ from src.player import Player
 
 
 class Game:
-    def __init__(self, players: list[Player]) -> None:
-        self.board: Board = Board()
+    def __init__(self, players: list[Player], max_value: int, pieces_per_hand: int) -> None:
+        self.board: Board = Board(max_value, len(players), pieces_per_hand)
         self.players: List[Player] = players
 
-    def distribute_pieces(self, max_value: int, pieces_per_hand: int) -> None:
+    def distribute_pieces(self, max_value: int) -> None:
         # generate all possible dominoes
-        dominoes = [Domino(left, right) for left in range(max_value + 1) for right in range(left, max_value + 1)]
+        dominoes = Domino.generate_all(max_value)
         # shuffle the dominoes
         shuffle(dominoes)
         # give each player a hand of dominoes
         for player in self.players:
-            player.hand = dominoes[:pieces_per_hand]
-            dominoes = dominoes[pieces_per_hand:]
+            player.hand = dominoes[:self.board.pieces_per_hand]
+            dominoes = dominoes[len(dominoes) - self.board.pieces_per_hand:]
 
     def play(self, initial_player: int = 0) -> Player:
         # set initial values
