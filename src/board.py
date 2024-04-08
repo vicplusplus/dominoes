@@ -1,45 +1,37 @@
 from src.domino import Domino
-from typing import Generator
-from random import shuffle
+from typing import List
 from src.move import Move
-from src.board_end import BoardEnd
-
-
 class Board:
-    """
-    Represents the board of the game.
-    - The dominoes is a list of the dominoes in the board.
-    - The ends is a list of the ends of the board.
-    """
-
     def __init__(self):
-        self.dominoes = []
-        self.ends = []
+        self.dominoes: list = []
 
-    def add(self, move: Move) -> None:
-        """
-        Adds a domino to the board.
-        """
-        if not move.validate(self):
+    def add(self, domino: Domino, side: str) -> None:
+        if not self.can_add(domino, side):
             raise ValueError("Invalid move")
-
-        if not move.target:
-            self.dominoes.append(move.played)
-            self.ends = [BoardEnd(move.played, 0), BoardEnd(move.played, 1)]
+        if side == "right":
+            self.dominoes.append(domino)
+        elif side == "left":
+            self.dominoes.insert(0, domino)
         else:
-            self.ends.remove(BoardEnd(move.target, move.target_side))
-            # set the new end to the opposite side of the played domino
-            self.ends.append(BoardEnd(move.played, 1 - move.played_side))
-
-    def __str__(self) -> str:
-        """
-        Returns a string representation of the board.
-        """
+            raise ValueError("Invalid side")
+        
+    def can_add(self, domino: Domino, side: str) -> bool:
         if not self.dominoes:
-            return ""
-        current_side = 1 - self.ends[0].side
-        start = self.ends[0].domino
-        while start is not None:
-            print(start.f_repr(current_side), end=" ")
-            current_side = start.sides[current_side]["domino"].sides.index(start)
-            start = start.sides[current_side]["domino"]
+            return True
+        if side == "right":
+            return domino.left == self.dominoes[-1].right
+        if side == "left":
+            return domino.right == self.dominoes[0].left
+        return False
+    
+    def possible_moves(self, hand: List[Domino]) -> List[Move]:
+        # get all possible moves for the hand
+        # player is allowed to flip dominoes
+        moves = []
+        for domino in hand:
+            for side in ["left", "right"]:
+                if self.can_add(domino, side):
+                    moves.append(Move(domino, side))
+                if self.can_add(domino.flipped(), side):
+                    moves.append(Move(domino.flipped(), side))
+        return moves
