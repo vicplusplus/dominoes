@@ -1,0 +1,64 @@
+Strategies: (<src.strategies.random_strategy.RandomStrategy object at 0x00000211819922D0>, <src.strategies.random_strategy.RandomStrategy object at 0x00000211819922D0>, <src.strategies.random_strategy.RandomStrategy object at 0x00000211819922D0>, <src.strategies.random_strategy.RandomStrategy object at 0x00000211819922D0>)
+Wins: [39, 21, 19, 21]
+Avg. Scores: [9.08, 9.43, 10.22, 11.2]
+
+Strategies: (<src.strategies.random_strategy.RandomStrategy object at 0x0000021181991F70>, <src.strategies.random_strategy.RandomStrategy object at 0x0000021181991F70>, <src.strategies.random_strategy.RandomStrategy object at 0x0000021181991F70>, <src.strategies.aggregate_minimax_strategy.AggregateMinimaxStrategy object at 0x0000021181992390>)
+Wins: [39, 24, 21, 16]
+Avg. Scores: [10.85, 12.18, 12.17, 14.01]
+
+Strategies: (<src.strategies.random_strategy.RandomStrategy object at 0x0000021181990F80>, <src.strategies.random_strategy.RandomStrategy object at 0x0000021181990F80>, <src.strategies.aggregate_minimax_strategy.AggregateMinimaxStrategy object at 0x00000211819923C0>, <src.strategies.random_strategy.RandomStrategy object at 0x0000021181990F80>)
+Wins: [45, 30, 10, 15]
+Avg. Scores: [9.78, 10.42, 12.09, 12.39]
+
+Strategies: (<src.strategies.random_strategy.RandomStrategy object at 0x0000021181990C80>, <src.strategies.random_strategy.RandomStrategy object at 0x0000021181990C80>, <src.strategies.aggregate_minimax_strategy.AggregateMinimaxStrategy object at 0x0000021181992360>, <src.strategies.aggregate_minimax_strategy.AggregateMinimaxStrategy object at 0x0000021181992360>)
+Wins: [49, 21, 16, 14]
+Avg. Scores: [9.21, 11.67, 12.42, 14.64]
+
+Strategies: (<src.strategies.random_strategy.RandomStrategy object at 0x0000021181991F10>, <src.strategies.aggregate_minimax_strategy.AggregateMinimaxStrategy object at 0x0000021181992420>, <src.strategies.random_strategy.RandomStrategy object at 0x0000021181991F10>, <src.strategies.random_strategy.RandomStrategy object at 0x0000021181991F10>)
+Wins: [59, 16, 6, 19]
+Avg. Scores: [8.76, 13.34, 14.34, 13.55]
+
+Strategies: (<src.strategies.random_strategy.RandomStrategy object at 0x0000021181991670>, <src.strategies.aggregate_minimax_strategy.AggregateMinimaxStrategy object at 0x00000211819923F0>, <src.strategies.random_strategy.RandomStrategy object at 0x0000021181991670>, <src.strategies.aggregate_minimax_strategy.AggregateMinimaxStrategy object at 0x00000211819923F0>)
+Wins: [50, 16, 15, 19]
+Avg. Scores: [10.45, 14.21, 12.85, 13.83]
+
+Strategies: (<src.strategies.random_strategy.RandomStrategy object at 0x0000021181990E30>, <src.strategies.aggregate_minimax_strategy.AggregateMinimaxStrategy object at 0x0000021181992450>, <src.strategies.aggregate_minimax_strategy.AggregateMinimaxStrategy object at 0x0000021181992450>, <src.strategies.random_strategy.RandomStrategy object at 0x0000021181990E30>)
+Wins: [47, 25, 10, 18]
+Avg. Scores: [9.61, 12.2, 13.92, 12.83]
+
+Strategies: (<src.strategies.random_strategy.RandomStrategy object at 0x0000021181991D90>, <src.strategies.aggregate_minimax_strategy.AggregateMinimaxStrategy object at 0x0000021181992480>, <src.strategies.aggregate_minimax_strategy.AggregateMinimaxStrategy object at 0x0000021181992480>, <src.strategies.aggregate_minimax_strategy.AggregateMinimaxStrategy object at 0x0000021181992480>)
+Wins: [54, 19, 10, 17]
+Avg. Scores: [9.52, 13.91, 15.06, 16.47]
+
+Strategies: (<src.strategies.aggregate_minimax_strategy.AggregateMinimaxStrategy object at 0x0000021181990AA0>, <src.strategies.random_strategy.RandomStrategy object at 0x0000021181992330>, <src.strategies.random_strategy.RandomStrategy object at 0x0000021181992330>, <src.strategies.random_strategy.RandomStrategy object at 0x0000021181992330>)
+Wins: [38, 29, 20, 13]
+Avg. Scores: [9.6, 10.02, 11.26, 11.9]
+
+Strategies: (<src.strategies.aggregate_minimax_strategy.AggregateMinimaxStrategy object at 0x0000021181991A30>, <src.strategies.random_strategy.RandomStrategy object at 0x0000021181992510>, <src.strategies.random_strategy.RandomStrategy object at 0x0000021181992510>, <src.strategies.aggregate_minimax_strategy.AggregateMinimaxStrategy object at 0x0000021181991A30>)
+Wins: [32, 29, 22, 17]
+Avg. Scores: [12.55, 11.36, 11.29, 12.38]
+
+Strategies: (<src.strategies.aggregate_minimax_strategy.AggregateMinimaxStrategy object at 0x0000021181990EF0>, <src.strategies.random_strategy.RandomStrategy object at 0x00000211819924B0>, <src.strategies.aggregate_minimax_strategy.AggregateMinimaxStrategy object at 0x0000021181990EF0>, <src.strategies.random_strategy.RandomStrategy object at 0x00000211819924B0>)
+Wins: [39, 24, 18, 19]
+Avg. Scores: [11.73, 11.18, 11.91, 13.37]
+
+Strategies: (<src.strategies.aggregate_minimax_strategy.AggregateMinimaxStrategy object at 0x0000021181991760>, <src.strategies.random_strategy.RandomStrategy object at 0x0000021181992570>, <src.strategies.aggregate_minimax_strategy.AggregateMinimaxStrategy object at 0x0000021181991760>, <src.strategies.aggregate_minimax_strategy.AggregateMinimaxStrategy object at 0x0000021181991760>)
+Wins: [48, 25, 14, 13]
+Avg. Scores: [12.1, 14.03, 14.61, 17.07]
+
+Strategies: (<src.strategies.aggregate_minimax_strategy.AggregateMinimaxStrategy object at 0x0000021181991280>, <src.strategies.aggregate_minimax_strategy.AggregateMinimaxStrategy object at 0x0000021181991280>, <src.strategies.random_strategy.RandomStrategy object at 0x00000211819924E0>, <src.strategies.random_strategy.RandomStrategy object at 0x00000211819924E0>)
+Wins: [36, 25, 20, 19]
+Avg. Scores: [13.02, 11.73, 12.18, 11.99]
+
+Strategies: (<src.strategies.aggregate_minimax_strategy.AggregateMinimaxStrategy object at 0x0000021181991B80>, <src.strategies.aggregate_minimax_strategy.AggregateMinimaxStrategy object at 0x0000021181991B80>, <src.strategies.random_strategy.RandomStrategy object at 0x00000211819925D0>, <src.strategies.aggregate_minimax_strategy.AggregateMinimaxStrategy object at 0x0000021181991B80>)
+Wins: [42, 22, 13, 23]
+Avg. Scores: [12.07, 13.31, 13.41, 13.79]
+
+Strategies: (<src.strategies.aggregate_minimax_strategy.AggregateMinimaxStrategy object at 0x0000021181991550>, <src.strategies.aggregate_minimax_strategy.AggregateMinimaxStrategy object at 0x0000021181991550>, <src.strategies.aggregate_minimax_strategy.AggregateMinimaxStrategy object at 0x0000021181991550>, <src.strategies.random_strategy.RandomStrategy object at 0x00000211819925A0>)
+Wins: [41, 20, 14, 25]
+Avg. Scores: [13.23, 13.27, 14.27, 13.93]
+
+Strategies: (<src.strategies.aggregate_minimax_strategy.AggregateMinimaxStrategy object at 0x0000021181992030>, <src.strategies.aggregate_minimax_strategy.AggregateMinimaxStrategy object at 0x0000021181992030>, <src.strategies.aggregate_minimax_strategy.AggregateMinimaxStrategy object at 0x0000021181992030>, <src.strategies.aggregate_minimax_strategy.AggregateMinimaxStrategy object at 0x0000021181992030>)
+Wins: [42, 17, 13, 28]
+Avg. Scores: [14.78, 15.05, 15.86, 16.31]
+

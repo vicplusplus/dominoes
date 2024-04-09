@@ -5,6 +5,7 @@ from src.move import Move
 from src.board import Board
 import random
 
+
 class RandomStrategy(Strategy):
     def select_move(self, hand: List[Domino], board: Board) -> Optional[Move]:
         # create a list of moves that can be played
@@ -15,3 +16,5 @@ class RandomStrategy(Strategy):
         # return a random move
         return random.choice(moves)
 
+    def __str__(self) -> str:
+        return "RandomStrategy"

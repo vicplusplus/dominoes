@@ -8,7 +8,9 @@ from src.move import Move
 
 
 class Game:
-    def __init__(self, players: list[Player], max_value: int, pieces_per_hand: int) -> None:
+    def __init__(
+        self, players: list[Player], max_value: int, pieces_per_hand: int
+    ) -> None:
         self.board: Board = Board(max_value, len(players), pieces_per_hand)
         self.players: List[Player] = players
         self.move_history: List[(int, Move)] = []
@@ -20,8 +22,8 @@ class Game:
         shuffle(dominoes)
         # give each player a hand of dominoes
         for player in self.players:
-            player.hand = dominoes[:self.board.pieces_per_hand]
-            dominoes = dominoes[len(dominoes) - self.board.pieces_per_hand:]
+            player.hand = dominoes[: self.board.pieces_per_hand]
+            dominoes = dominoes[len(dominoes) - self.board.pieces_per_hand :]
 
     def play(self, initial_player: int = 0) -> Player:
         # set initial values
@@ -46,8 +48,7 @@ class Game:
             if not self.players[current_player_index].hand:
                 return self.players[current_player_index]
             # go to the next player
-            current_player_index = (
-                current_player_index + 1) % len(self.players)
+            current_player_index = (current_player_index + 1) % len(self.players)
             # if all players have passed, winner is the player with the lowest score
             # if there is a tie, the player with the lowest minimum value domino in their hand wins
             if passes == len(self.players):
@@ -58,6 +59,6 @@ class Game:
                         min_score = score
                         winner = player
                     elif score == min_score:
-                        player.min_domino() < winner.min_domino()
+                        player.min_domino().value() < winner.min_domino().value()
                         winner = player
         return winner
