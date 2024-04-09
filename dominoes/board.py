@@ -1,6 +1,5 @@
-from game.domino import Domino
+from dominoes import Domino, Move
 from typing import List
-from game.move import Move
 
 
 class Board:

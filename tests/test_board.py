@@ -1,7 +1,5 @@
 import unittest
-from game.domino import Domino
-from game.board import Board
-from game.move import Move
+from dominoes import Domino, Board, Move
 
 
 class TestBoard(unittest.TestCase):

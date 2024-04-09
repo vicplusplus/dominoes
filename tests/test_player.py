@@ -1,9 +1,6 @@
 import unittest
-from game.player import Player
-from game.domino import Domino
-from game.strategies.random_strategy import RandomStrategy
-from game.move import Move
-from game.board import Board
+from dominoes import Domino, Board, Move, Player
+from dominoes.strategies import RandomStrategy
 
 
 class TestPlayer(unittest.TestCase):

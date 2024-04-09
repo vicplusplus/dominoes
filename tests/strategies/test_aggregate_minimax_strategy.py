@@ -1,8 +1,7 @@
 import unittest
-from src.domino import Domino
-from src.board import Board
-from src.move import Move
-from src.strategies.aggregate_minimax_strategy import AggregateMinimaxStrategy
+from dominoes import Domino, Board, Move
+from dominoes.strategies import AggregateMinimaxStrategy
+
 
 class TestAggregateMinimaxStrategy(unittest.TestCase):
     def test_optimal_move_selection(self):
@@ -10,7 +9,7 @@ class TestAggregateMinimaxStrategy(unittest.TestCase):
         strategy = AggregateMinimaxStrategy(depth=2)
         hand = [Domino(1, 2), Domino(3, 4)]
         board = Board(6, 4, 7)
-        board.add(Domino(1,5), "right")
+        board.add(Domino(1, 5), "right")
 
         # Execute the strategy
         move = strategy.select_move(hand, board)

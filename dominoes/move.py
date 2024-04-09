@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from game.domino import Domino
+from dominoes import Domino
 
 
 @dataclass

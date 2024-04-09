@@ -1,9 +1,10 @@
-from game.game import Game
-from game.player import Player
-from game.strategies.random_strategy import RandomStrategy
-from game.strategies.largest_piece_strategy import LargestPieceStrategy
-from game.strategies.aggregate_minimax_strategy import AggregateMinimaxStrategy
-from game.strategies.smallest_piece_strategy import SmallestPieceStrategy
+from dominoes import Game, Player
+from dominoes.strategies import (
+    RandomStrategy,
+    LargestPieceStrategy,
+    SmallestPieceStrategy,
+    AggregateMinimaxStrategy,
+)
 from itertools import product
 from concurrent.futures import ProcessPoolExecutor
 import multiprocessing

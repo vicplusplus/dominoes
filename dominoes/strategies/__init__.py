@@ -1,0 +1,5 @@
+from .aggregate_minimax_strategy import AggregateMinimaxStrategy
+from .largest_piece_strategy import LargestPieceStrategy
+from .random_strategy import RandomStrategy
+from .smallest_piece_strategy import SmallestPieceStrategy
+from .strategy import Strategy

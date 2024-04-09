@@ -1,5 +1,5 @@
 import unittest
-from game.domino import Domino
+from dominoes import Domino
 
 
 class TestDomino(unittest.TestCase):

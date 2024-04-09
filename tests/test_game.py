@@ -1,8 +1,6 @@
 import unittest
-from game.game import Game
-from game.player import Player
-from game.domino import Domino
-from game.strategies.random_strategy import RandomStrategy
+from dominoes import Domino, Game, Player
+from dominoes.strategies import RandomStrategy
 
 
 class TestGame(unittest.TestCase):
