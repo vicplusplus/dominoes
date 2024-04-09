@@ -1,5 +1,6 @@
 from dataclasses import dataclass
-from src.domino import Domino
+from game.domino import Domino
+
 
 @dataclass
 class Move:
@@ -8,7 +9,7 @@ class Move:
 
     def __str__(self) -> str:
         return f"Add {self.domino} to {self.side} side."
-    
+
     # static method to remove a played domino from a hand
     @staticmethod
     def remove_from_hand(move: "Move", hand: list) -> None:

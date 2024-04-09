@@ -1,10 +1,10 @@
 from typing import List
 from random import shuffle
 
-from src.board import Board
-from src.domino import Domino
-from src.player import Player
-from src.move import Move
+from game.board import Board
+from game.domino import Domino
+from game.player import Player
+from game.move import Move
 
 
 class Game:

@@ -1,9 +1,9 @@
-from src.game import Game
-from src.player import Player
-from src.strategies.random_strategy import RandomStrategy
-from src.strategies.largest_piece_strategy import LargestPieceStrategy
-from src.strategies.aggregate_minimax_strategy import AggregateMinimaxStrategy
-from src.strategies.smallest_piece_strategy import SmallestPieceStrategy
+from game.game import Game
+from game.player import Player
+from game.strategies.random_strategy import RandomStrategy
+from game.strategies.largest_piece_strategy import LargestPieceStrategy
+from game.strategies.aggregate_minimax_strategy import AggregateMinimaxStrategy
+from game.strategies.smallest_piece_strategy import SmallestPieceStrategy
 from itertools import product
 from concurrent.futures import ProcessPoolExecutor
 import multiprocessing

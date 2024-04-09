@@ -1,6 +1,7 @@
 import unittest
-from src.domino import Domino
-from src.move import Move
+from game.domino import Domino
+from game.move import Move
+
 
 class TestMove(unittest.TestCase):
     def test_str(self):

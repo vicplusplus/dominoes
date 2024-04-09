@@ -1,7 +1,8 @@
 import unittest
-from src.domino import Domino
-from src.board import Board
-from src.move import Move
+from game.domino import Domino
+from game.board import Board
+from game.move import Move
+
 
 class TestBoard(unittest.TestCase):
     def setUp(self):
@@ -49,4 +50,7 @@ class TestBoard(unittest.TestCase):
         domino2 = Domino(1, 3)
         domino3 = Domino(2, 3)
         self.board.add(domino1, "right")
-        self.assertEqual(self.board.possible_moves([domino2, domino3]), [Move(domino2.flipped(), "left"), Move(domino3, "right")])
+        self.assertEqual(
+            self.board.possible_moves([domino2, domino3]),
+            [Move(domino2.flipped(), "left"), Move(domino3, "right")],
+        )
