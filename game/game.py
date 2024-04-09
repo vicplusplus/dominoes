@@ -54,7 +54,7 @@ class Game:
             if passes == len(self.players):
                 min_score = float("inf")
                 for player in self.players:
-                    score = player.score()
+                    score = player.penalty()
                     if score < min_score:
                         min_score = score
                         winner = player

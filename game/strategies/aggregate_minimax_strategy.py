@@ -102,9 +102,7 @@ def heuristic_value(hand: List[Domino], board: Board):
     # A player with a small hand and many possible moves is at an advantage
     if not hand:
         return inf
-    return len(board.possible_moves(hand)) / len(hand) + sum(
-        domino.value() for domino in hand
-    )
+    return -sum(domino.value() for domino in hand)
 
 
 def is_terminal(hand: List[Domino], board: Board):

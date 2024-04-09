@@ -5,6 +5,7 @@ from src.strategies.strategy import Strategy
 from src.move import Move
 from src.board import Board
 
+
 class Player:
     def __init__(self, name: str, strategy: Strategy) -> None:
         self.name = name
@@ -18,8 +19,8 @@ class Player:
             return selected
         return None
 
-    def score(self) -> int:
+    def penalty(self) -> int:
         return sum(domino.value() for domino in self.hand)
-    
+
     def min_domino(self) -> Domino:
         return min(self.hand, key=lambda domino: domino.value())
