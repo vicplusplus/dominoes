@@ -38,13 +38,16 @@ class Board:
             return [Move(domino, "right") for domino in hand]
 
         moves = []
+        added = False
 
         for domino in hand:
             if domino.left == self.dominoes[-1].right:
                 moves.append(Move(domino, "right"))
+                added = True
             if domino.right == self.dominoes[0].left:
                 moves.append(Move(domino, "left"))
-            if domino.left != domino.right:
+                added = True
+            if not added and domino.left != domino.right:
                 if domino.right == self.dominoes[-1].right:
                     moves.append(Move(domino.flipped(), "right"))
                 if domino.left == self.dominoes[0].left:
