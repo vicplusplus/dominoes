@@ -1,4 +1,5 @@
-from dominoes import Domino, Move
+from .domino import Domino
+from .move import Move
 from typing import List
 
 
@@ -10,23 +11,27 @@ class Board:
         self.pieces_per_hand = pieces_per_hand
 
     def add(self, domino: Domino, side: str) -> None:
-        if not self.can_add(domino, side):
-            raise ValueError("Invalid move")
-        if side == "right":
+        if side != "right" and side != "left":
+            raise ValueError("Invalid side")
+        if not self.dominoes:
             self.dominoes.append(domino)
+            return
+        if side == "right":
+            if domino.left == self.dominoes[-1].right:
+                self.dominoes.append(domino)
+            elif domino.right == self.dominoes[-1].right:
+                self.dominoes.append(domino.flipped())
+            else:
+                raise ValueError("Invalid move")
         elif side == "left":
-            self.dominoes.insert(0, domino)
+            if domino.right == self.dominoes[0].left:
+                self.dominoes.insert(0, domino)
+            elif domino.left == self.dominoes[0].left:
+                self.dominoes.insert(0, domino.flipped())
+            else:
+                raise ValueError("Invalid move")
         else:
             raise ValueError("Invalid side")
-
-    def can_add(self, domino: Domino, side: str) -> bool:
-        if not self.dominoes:
-            return True
-        if side == "right":
-            return domino.left == self.dominoes[-1].right
-        if side == "left":
-            return domino.right == self.dominoes[0].left
-        return False
 
     def possible_moves(self, hand: List[Domino]) -> List[Move]:
         if not self.dominoes:

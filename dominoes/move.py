@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from dominoes import Domino
+from .domino import Domino
 
 
 @dataclass
@@ -15,5 +15,7 @@ class Move:
     def remove_from_hand(move: "Move", hand: list) -> None:
         if move.domino in hand:
             hand.remove(move.domino)
-        else:
+        elif move.domino.flipped() in hand:
             hand.remove(move.domino.flipped())
+        else:
+            raise ValueError("Domino not in hand.")

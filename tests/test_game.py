@@ -15,6 +15,8 @@ class TestGame(unittest.TestCase):
         self.game.distribute_pieces()
         for player in self.players:
             self.assertEqual(len(player.hand), 7)
+        # each hand should have unique dominoes
+        self.assertNotEqual(self.players[0].hand, self.players[1].hand)
 
     def test_play(self):
         winner = self.game.play()

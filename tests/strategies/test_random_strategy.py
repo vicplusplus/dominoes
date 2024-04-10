@@ -13,4 +13,4 @@ class TestRandomStrategy(unittest.TestCase):
         # either the domino or its flipped version should be in the hand
         self.assertTrue(move.domino in hand or move.domino.flipped() in hand)
         # the move should be valid
-        self.assertTrue(board.can_add(move.domino, move.side))
+        self.assertTrue(move in board.possible_moves(hand))

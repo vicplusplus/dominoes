@@ -1,6 +1,8 @@
 from typing import List, Optional
-from dominoes import Domino, Board, Move
-from dominoes.strategies import Strategy
+from ..domino import Domino
+from ..move import Move
+from ..board import Board
+from .strategy import Strategy
 from math import inf
 
 

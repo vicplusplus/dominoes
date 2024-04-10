@@ -1,6 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import List, Optional
-from dominoes import Domino, Board, Move
+from ..domino import Domino
+from ..move import Move
+from ..board import Board
 
 
 class Strategy(ABC):

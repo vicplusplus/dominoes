@@ -1,7 +1,9 @@
 from dataclasses import dataclass
 from typing import List, Optional
-from dominoes import Board, Move, Domino
-from dominoes.strategies import Strategy
+from .domino import Domino
+from .board import Board
+from .move import Move
+from .strategies.strategy import Strategy
 
 
 class Player:
