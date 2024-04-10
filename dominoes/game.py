@@ -17,7 +17,6 @@ class Game:
         self.current_player_index: int = 0
         self.passes: int = 0
         self.winner: Optional[Player] = None
-        self.distribute_pieces()
 
     def distribute_pieces(self) -> None:
         # generate all possible dominoes
