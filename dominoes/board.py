@@ -33,6 +33,22 @@ class Board:
         else:
             raise ValueError("Invalid side")
 
+    def can_play(self, move: Move) -> bool:
+        if not self.dominoes:
+            return True
+        if move.side == "right":
+            return (
+                move.domino.left == self.dominoes[-1].right
+                or move.domino.right == self.dominoes[-1].right
+            )
+        elif move.side == "left":
+            return (
+                move.domino.right == self.dominoes[0].left
+                or move.domino.left == self.dominoes[0].left
+            )
+        else:
+            raise ValueError("Invalid side")
+
     def possible_moves(self, hand: List[Domino]) -> List[Move]:
         if not self.dominoes:
             return [Move(domino, "right") for domino in hand]

@@ -41,6 +41,8 @@ class Game:
             # add the domino to the board
             self.board.add(move.domino, move.side)
             self.move_history.append((self.current_player_index, move))
+            # remove the domino from the player's hand
+            self.players[self.current_player_index].hand.remove(move.domino)
         # check if the player has won
         if not self.players[self.current_player_index].hand:
             self.winner = self.players[self.current_player_index]
@@ -53,9 +55,19 @@ class Game:
     def play(self) -> Player:
         while not self.is_done():
             player = self.players[self.current_player_index]
-            move = player.play(self.board)
+            move = player.select_move(self.board)
             self.play_turn(move)
         return self.get_winner()
+
+    def reset(self) -> None:
+        self.board.dominoes = []
+        self.move_history = []
+        self.current_player_index = 0
+        self.passes = 0
+        self.winner = None
+        for player in self.players:
+            player.hand = []
+        self.distribute_pieces()
 
     def is_done(self) -> bool:
         return self.winner is not None

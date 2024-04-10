@@ -7,17 +7,15 @@ from .strategies.strategy import Strategy
 
 
 class Player:
-    def __init__(self, name: str, strategy: Strategy) -> None:
+    def __init__(self, name: str, strategy: Optional[Strategy] = None) -> None:
         self.name = name
         self.hand: List[Domino] = []
         self.strategy: Strategy = strategy
 
-    def play(self, board: Board) -> Optional[Move]:
-        selected = self.strategy.select_move(self.hand, board)
-        if selected:
-            Move.remove_from_hand(selected, self.hand)
-            return selected
-        return None
+    def select_move(self, board: Board) -> Optional[Move]:
+        if not self.strategy:
+            raise ValueError("Player must have a strategy to play")
+        return self.strategy.select_move(self.hand, board)
 
     def penalty(self) -> int:
         return sum(domino.value() for domino in self.hand)
