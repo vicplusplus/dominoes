@@ -1,5 +1,5 @@
 from typing import List, Optional, Tuple
-from random import shuffle
+import numpy as np
 
 from .player import Player
 from .board import Board
@@ -18,18 +18,20 @@ class Game:
         self.passes: int = 0
         self.winner: Optional[Player] = None
 
+    import numpy as np
+
     def distribute_pieces(self) -> None:
         # generate all possible dominoes
         dominoes = Domino.generate_all(self.board.max_value)
         # cannot distribute pieces is players * pieces_per_hand > len(dominoes)
         if len(dominoes) < len(self.players) * self.board.pieces_per_hand:
             raise ValueError("Not enough dominoes to distribute to players")
-        # shuffle the dominoes
-        shuffle(dominoes)
+        # shuffle the dominoes using numpy
+        np.random.shuffle(dominoes)
         # give each player a hand of dominoes
         for player in self.players:
             player.hand = dominoes[: self.board.pieces_per_hand]
-            dominoes = dominoes[len(dominoes) - self.board.pieces_per_hand :]
+            dominoes = dominoes[self.board.pieces_per_hand :]
 
     def play_turn(self, move: Move) -> None:
         # if the player can't play, pass
@@ -51,6 +53,13 @@ class Game:
             self.winner = self.tie_breaker()
         # go to the next player
         self.current_player_index = (self.current_player_index + 1) % len(self.players)
+
+    def play_until_player_turn(self, target: Player) -> Optional[Player]:
+        while not self.is_done() and self.players[self.current_player_index] != target:
+            player = self.players[self.current_player_index]
+            move = player.select_move(self.board)
+            self.play_turn(move)
+        return self.get_winner()
 
     def play(self) -> Player:
         while not self.is_done():
