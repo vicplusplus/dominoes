@@ -34,6 +34,8 @@ class Board:
             raise ValueError("Invalid side")
 
     def can_play(self, move: Move) -> bool:
+        if not move:
+            return True
         if not self.dominoes:
             return True
         if move.side == "right":

@@ -1,3 +1,8 @@
+# add ../ to the path
+import sys
+
+sys.path.append("../")  # Adjust the path to the directory of the module
+
 import gymnasium as gym
 from gymnasium import spaces
 from dominoes import Game, Move, Player, Domino
@@ -10,12 +15,15 @@ class DominoesEnv(gym.Env):
 
     def __init__(self, max_value: int, num_pieces: int, num_players: int):
         super(DominoesEnv, self).__init__()
+        assert max_value < 255, "max_value is too high for uint8"
 
         self.action_space = spaces.Discrete(num_pieces * 2 + 1)  # +1 for passing
         self.observation_space = spaces.Box(
-            low=0,
-            high=max_value + 1,
-            shape=(num_pieces * 2 * (num_players + 1)),  # +1 for the hand
+            low=np.zeros((num_pieces * 2 * (num_players + 1),), dtype=np.uint8),
+            high=np.full(
+                (num_pieces * 2 * (num_players + 1),), max_value + 1, dtype=np.uint8
+            ),
+            shape=(num_pieces * 2 * (num_players + 1),),  # +1 for the hand
             dtype=np.uint8,  # max value will guaranteed fit in an unsigned byte
         )
         self.num_players = num_players
@@ -26,16 +34,24 @@ class DominoesEnv(gym.Env):
 
     def step(self, action):
         reward = self._enact_action(action)
-        self.game.play_until_player_turn(
-            self.player
-        )  # Use LargestPieceStrategy to play all turns until it is the agent's turn
+        if not self.game.is_done():
+            self.game.play_until_player_turn(
+                self.player
+            )  # Use LargestPieceStrategy to play all turns until it is the agent's turn
         observation = self._get_observation()
         done = self._is_done()
-        info = {}
+        truncated = False
+        info = {
+            "won": self.game.get_winner() == self.player,
+            "lost": self.game.get_winner() is not None
+            and self.game.get_winner() != self.player,
+        }
 
-        return observation, reward, done, info
+        return observation, reward, done, truncated, info
 
-    def reset(self):
+    def reset(self, seed=None):
+        super().reset(seed=seed)
+        np.random.seed(seed)
         # randomize the player index
         player_index = np.random.randint(self.num_players)
 
@@ -49,28 +65,41 @@ class DominoesEnv(gym.Env):
         # Create the game
         self.game = Game(players, self.max_value, self.num_pieces)
 
-    def render(self, mode="human"):
-        # Optional: Implement rendering the game state for visualization
-        pass
+        # Distribute the pieces
+        self.game.distribute_pieces()
+
+        # Play all turns until it is the agent's turn
+        self.game.play_until_player_turn(self.player)
+
+        return self._get_observation(), {}
+
+    def close(self):
+        return super().close()
 
     def _enact_action(self, action) -> float:
         # Implement translating the action into a move in the game
-        if action == self.num_pieces * 2:
-            move = None
-            return 0
-        else:
+        move = None
+        is_valid = True
+
+        if action != self.num_pieces * 2:
             hand_index = action // 2
-            side = action % 2
-            move = Move(self.player[hand_index], side)
-            if not self.game.board.can_play(move):
-                return -1
+            side = "left" if action % 2 == 0 else "right"
+
+            if hand_index >= len(self.player.hand):
+                move = None
+                is_valid = False
+            else:
+                move = Move(self.player.hand[hand_index], side)
+                is_valid = self.game.board.can_play(move)
+                if not is_valid:
+                    move = None
 
         self.game.play_turn(move)
         if self.game.get_winner() == self.player:
             return 10
         elif self.game.get_winner() is not None:
             return -self.player.penalty()
-        return 1
+        return 1 if is_valid else -1
 
     def _get_observation(self):
         # First, get the player's hand
@@ -91,7 +120,7 @@ class DominoesEnv(gym.Env):
         observation = np.concatenate([hand_observation, board_observation])
 
         # return the observation converted to a numpy array of uint8
-        return np.array(observation, dtype=np.uint8)
+        return observation.astype(np.uint8)
 
     def _is_done(self):
         return self.game.is_done()
